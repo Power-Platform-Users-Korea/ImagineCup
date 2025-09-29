@@ -19,8 +19,8 @@ Microsoft Imagine Cup Sprint 프로젝트에 오신 것을 환영합니다! 이 
 
 Microsoft Imagine Cup은 학생 개발자들이 Microsoft 기술을 활용하여 혁신적인 솔루션을 만들 수 있도록 지원하는 글로벌 대회입니다. 창의성, 기술적 역량, 그리고 기업가 정신을 보여주며 실제 문제를 해결할 수 있는 기회입니다.
 
-### 2026년 이매진컵 도전 전략
-[2026년 이매진컵(Imagine Cup) 도전 전략](/2026%20Imangine%20Cup/index.html)
+### 📖 2026년 이매진컵 도전 전략
+[🚀 2026년 이매진컵(Imagine Cup) 도전 전략 보러가기](./2026-imagine-cup/index.html)
 
 ## 📋 프로젝트 개요
 
