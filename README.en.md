@@ -2,6 +2,74 @@
 
 Welcome to our Microsoft Imagine Cup Sprint project! This repository contains our innovative solution developed for the Microsoft Imagine Cup competition.
 
+
+## 🏆 Imagine Cup 2026: Practical Strategy Guide for Korean Teams (English)
+
+### 1. Key Trends & Changes for Imagine Cup 2026
+- **AI for Impact**: Generative AI, Responsible AI, and social impact are core themes
+- **Team Structure**: 1-4 members, multidisciplinary and diverse teams are encouraged
+- **Judging Criteria**: Innovation, social impact, technical excellence, business potential, and presentation
+- **Prototype Required**: A working demo/app/web/AI model is essential
+- **Pitch Video**: Up to 3 minutes, impactful English presentation (storytelling + demo)
+
+### 2. Analysis of Recent Winning Projects (2022~2025)
+#### Common Success Patterns
+- **Solving Real Problems**: Clear social pain points (environment, health, education, inclusion, etc.)
+- **Active Use of AI/Cloud**: Azure, OpenAI, IoT, Computer Vision, NLP, and other MS technologies
+- **MVP Focus**: Prioritize a working core feature over a perfect product
+- **Storytelling**: Clear flow from problem → solution → impact → vision
+- **Team Diversity**: Roles split across development, planning, design, business, etc.
+
+#### Example Winners
+- **2025 Winner (USA)**: Real-time AI captions for the hearing impaired (Azure Speech, mobile app)
+- **2024 Winner (India)**: Rural women's health monitoring IoT+AI solution (Azure IoT, ML)
+- **2023 Winner (Kenya)**: AI tutor for underprivileged students (Azure OpenAI, chatbot)
+- **2022 Winner (Australia)**: Wildfire prediction AI + drone system (Azure AI, Computer Vision)
+
+### 3. Actionable Strategies for 2026
+#### 1) Topic Selection
+- **Social Impact**: Clearly define a problem relevant to Korea/global (climate, health, education, inclusion, etc.)
+- **AI Utilization**: Use generative AI, responsible AI, and data ethics
+- **Feasibility**: Design an MVP that can actually be built
+
+#### 2) Team Building
+- **Role Assignment**: Development (front/back/AI), planning, design, English presentation
+- **Diversity**: Mix of majors, gender, backgrounds is a plus
+
+#### 3) Technical Strategy
+- **Leverage Microsoft Azure**: AI, ML, IoT, Web App, Database, etc.
+- **Use OpenAI, Copilot, Power Platform, and latest MS services**
+- **GitHub for Collaboration**: Code management, teamwork, CI/CD automation
+
+#### 4) Presentation & Demo
+- **Pitch Video**: 3 minutes, clear flow, real demo included
+- **English**: Native fluency not required, but clear script and message are essential
+- **Storytelling**: Emphasize real user/customer impact
+
+#### 5) Documentation & Open Source
+- **README/Docs**: Both Korean & English, setup/contribution guides, architecture diagrams
+- **Open Source License**: Clearly state (e.g., MIT)
+
+### 4. Preparation Checklist
+- [ ] Define the problem and social impact
+- [ ] Assign team roles and manage schedule
+- [ ] Study Azure/MS tech and build PoC (prototype)
+- [ ] Build a working MVP/demo
+- [ ] Write and practice a 3-min English pitch video script
+- [ ] Review judging criteria (innovation, impact, completeness, business, presentation)
+- [ ] Use GitHub/Notion for collaboration and documentation
+
+### 5. Useful Links
+- [Imagine Cup Official Site](https://imaginecup.microsoft.com/)
+- [2025 Imagine Cup Winners](https://imaginecup.microsoft.com/en-us/winners)
+- [Microsoft Learn - Azure AI](https://learn.microsoft.com/en-us/training/paths/build-ai-solutions-azure/)
+- [GitHub Student Pack](https://education.github.com/pack)
+- [Official Pitch Video Guide](https://imaginecup.microsoft.com/en-us/resources)
+
+> **Korean teams can win! Focus on cutting-edge AI/cloud, social impact, team diversity, and impactful presentations. A working demo and clear storytelling are the most important factors.**
+
+---
+
 ## 🎯 About Microsoft Imagine Cup
 
 The Microsoft Imagine Cup is a global competition that empowers student developers to create innovative solutions using Microsoft technologies. It's an opportunity to showcase creativity, technical skills, and entrepreneurial spirit while addressing real-world challenges.
