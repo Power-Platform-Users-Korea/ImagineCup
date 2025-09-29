@@ -37,12 +37,10 @@
             cursor: pointer;
         }
         .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+            display: none;
         }
         .faq-answer.open {
-            max-height: 200px;
+            display: block;
         }
     </style>
 </head>
@@ -334,12 +332,10 @@
                 question.addEventListener('click', () => {
                     const answer = question.nextElementSibling;
                     const icon = question.querySelector('span');
-                    
-                    if (answer.style.display === 'none') {
-                        answer.style.display = 'block';
+                    answer.classList.toggle('open');
+                    if (answer.classList.contains('open')) {
                         icon.textContent = '−';
                     } else {
-                        answer.style.display = 'none';
                         icon.textContent = '+';
                     }
                 });
