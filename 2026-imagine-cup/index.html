@@ -283,54 +283,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 카테고리 데이터
-            const categoryData = {
-                earth: {
-                    title: '🌍 환경 보호',
-                    description: '기후 변화, 환경 오염, 지속 가능한 에너지 등 지구를 위한 기술 솔루션을 개발해보세요.'
-                },
-                education: {
-                    title: '📚 교육 혁신',
-                    description: '온라인 학습, 개인 맞춤형 교육, 교육 격차 해소 등 교육 분야의 문제를 해결해보세요.'
-                },
-                health: {
-                    title: '💊 건강 관리',
-                    description: '의료 진단, 건강 모니터링, 원격 의료 등 사람들의 건강을 돕는 기술을 만들어보세요.'
-                },
-                lifestyle: {
-                    title: '🎮 일상 생활',
-                    description: '업무 효율성, 소통 개선, 엔터테인먼트 등 일상을 더 편리하고 즐겁게 만드는 기술을 개발해보세요.'
-                }
-            };
-
-            // 카테고리 버튼 기능
-            const categoryDisplay = document.getElementById('category-display');
-            const categoryButtons = document.querySelectorAll('.category-btn');
-
-            function updateCategory(category) {
-                const data = categoryData[category];
-                categoryDisplay.innerHTML = `
-                    <h3 class="text-xl font-semibold mb-4 text-blue-600">${data.title}</h3>
-                    <p class="text-gray-600">${data.description}</p>
-                `;
-                
-                categoryButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.category === category) {
-                        btn.classList.add('active');
-                    }
-                });
-            }
-
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    updateCategory(button.dataset.category);
-                });
-            });
-
-            // 초기 카테고리 설정
-            updateCategory('earth');
-
             // FAQ 데이터
             const faqData = [
                 {
@@ -367,34 +319,36 @@
 
             // FAQ 생성
             const faqContainer = document.getElementById('faq-container');
-            faqData.forEach((item, index) => {
-                const faqItem = document.createElement('div');
-                faqItem.className = 'faq-item';
-                faqItem.innerHTML = `
-                    <div class="faq-question p-4 cursor-pointer hover:bg-gray-50 font-medium">
-                        ${item.question}
-                        <span class="float-right">+</span>
-                    </div>
-                    <div class="faq-answer p-4 text-gray-600 bg-gray-50">
-                        ${item.answer}
-                    </div>
-                `;
-                faqContainer.appendChild(faqItem);
-            });
-
-            // FAQ 클릭 이벤트
-            document.querySelectorAll('.faq-question').forEach(question => {
-                question.addEventListener('click', () => {
-                    const answer = question.nextElementSibling;
-                    const icon = question.querySelector('span');
-                    answer.classList.toggle('open');
-                    if (answer.classList.contains('open')) {
-                        icon.textContent = '−';
-                    } else {
-                        icon.textContent = '+';
-                    }
+            if (faqContainer) {
+                faqData.forEach((item, index) => {
+                    const faqItem = document.createElement('div');
+                    faqItem.className = 'faq-item';
+                    faqItem.innerHTML = `
+                        <div class="faq-question p-4 cursor-pointer hover:bg-gray-50 font-medium">
+                            ${item.question}
+                            <span class="float-right">+</span>
+                        </div>
+                        <div class="faq-answer p-4 text-gray-600 bg-gray-50">
+                            ${item.answer}
+                        </div>
+                    `;
+                    faqContainer.appendChild(faqItem);
                 });
-            });
+
+                // FAQ 클릭 이벤트
+                faqContainer.querySelectorAll('.faq-question').forEach(question => {
+                    question.addEventListener('click', () => {
+                        const answer = question.nextElementSibling;
+                        const icon = question.querySelector('span');
+                        answer.classList.toggle('open');
+                        if (answer.classList.contains('open')) {
+                            icon.textContent = '−';
+                        } else {
+                            icon.textContent = '+';
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
