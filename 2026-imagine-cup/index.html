@@ -119,18 +119,63 @@
         <section id="categories" class="py-16 px-4">
             <div class="container mx-auto max-w-4xl">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-800">참가 분야</h2>
-                    <p class="text-lg text-gray-600">어떤 분야의 문제를 해결하고 싶으신가요?</p>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Imagine Cup 2026 공식 카테고리</h2>
+                    <p class="text-lg text-gray-600">올해는 아래 5대 분야에서 혁신적인 AI 솔루션을 찾습니다.<br>각 카테고리는 실제 기업/기관의 사례와 Microsoft의 AI 기술이 적용된 다양한 혁신 포인트가 있습니다.</p>
                 </div>
-                
-                <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <button data-category="earth" class="category-btn active bg-white text-gray-700 font-medium py-3 px-6 rounded-full shadow-md border border-gray-200">🌍 환경</button>
-                    <button data-category="education" class="category-btn bg-white text-gray-700 font-medium py-3 px-6 rounded-full shadow-md border border-gray-200">📚 교육</button>
-                    <button data-category="health" class="category-btn bg-white text-gray-700 font-medium py-3 px-6 rounded-full shadow-md border border-gray-200">💊 건강</button>
-                    <button data-category="lifestyle" class="category-btn bg-white text-gray-700 font-medium py-3 px-6 rounded-full shadow-md border border-gray-200">🎮 생활</button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card bg-white p-6 rounded-lg shadow-lg flex flex-col gap-2">
+                        <div class="text-3xl mb-2">🛡️</div>
+                        <h3 class="text-xl font-semibold text-blue-700 mb-1">Cybersecurity<br><span class="text-base text-gray-500">사이버보안</span></h3>
+                        <p class="text-gray-700 mb-2">AI를 활용한 데이터 보호, 디지털 신뢰 구축, 조직의 경쟁력 강화 등 보안 혁신에 도전하세요.</p>
+                        <ul class="text-sm text-gray-500 list-disc ml-5">
+                            <li>실시간 위협 탐지 및 대응</li>
+                            <li>AI 기반 보안 자동화</li>
+                            <li>글로벌 기업의 실제 적용 사례: <a href="https://www.microsoft.com/en/customers/story/22717-singapore-management-university-microsoft-security-copilot" class="underline text-blue-600" target="_blank">싱가포르 경영대</a>, <a href="https://www.microsoft.com/en/customers/story/24357-mitsui-microsoft-365-e5" class="underline text-blue-600" target="_blank">Mitsui & Co</a></li>
+                        </ul>
+                    </div>
+                    <div class="card bg-white p-6 rounded-lg shadow-lg flex flex-col gap-2">
+                        <div class="text-3xl mb-2">📚</div>
+                        <h3 class="text-xl font-semibold text-blue-700 mb-1">Education<br><span class="text-base text-gray-500">교육</span></h3>
+                        <p class="text-gray-700 mb-2">AI로 학습 경험을 개인화하고, 교육 격차 해소, 교사와 학생의 역량 강화를 위한 솔루션을 만들어보세요.</p>
+                        <ul class="text-sm text-gray-500 list-disc ml-5">
+                            <li>개인 맞춤형 학습 지원</li>
+                            <li>AI 기반 교육 평가 및 피드백</li>
+                            <li>실제 적용 사례: <a href="https://youtu.be/HF7HpClQXm4" class="underline text-blue-600" target="_blank">페루 교사 Marcela</a></li>
+                        </ul>
+                    </div>
+                    <div class="card bg-white p-6 rounded-lg shadow-lg flex flex-col gap-2">
+                        <div class="text-3xl mb-2">💰</div>
+                        <h3 class="text-xl font-semibold text-blue-700 mb-1">Financial Services<br><span class="text-base text-gray-500">금융 서비스</span></h3>
+                        <p class="text-gray-700 mb-2">AI 기반 금융 서비스 혁신, 포용적 금융, 사기 탐지, 고객 경험 개선 등 금융 분야의 미래를 설계하세요.</p>
+                        <ul class="text-sm text-gray-500 list-disc ml-5">
+                            <li>AI 기반 사기 탐지 및 리스크 관리</li>
+                            <li>금융 접근성 확대</li>
+                            <li>실제 적용 사례: <a href="https://www.microsoft.com/en/customers/story/24281-banco-de-la-ciudad-de-buenos-aires-microsoft-365-copilot" class="underline text-blue-600" target="_blank">Banco Ciudad</a>, <a href="https://videos.microsoft.com/customer-stories/watch/Zk2e9Bc9JuNSNL1s1ywba5" class="underline text-blue-600" target="_blank">Emirates NBD</a></li>
+                        </ul>
+                    </div>
+                    <div class="card bg-white p-6 rounded-lg shadow-lg flex flex-col gap-2">
+                        <div class="text-3xl mb-2">🧬</div>
+                        <h3 class="text-xl font-semibold text-blue-700 mb-1">Health and Life Sciences<br><span class="text-base text-gray-500">헬스케어 & 생명과학</span></h3>
+                        <p class="text-gray-700 mb-2">AI로 의료진 협업, 환자 맞춤 치료, 연구 가속화 등 건강과 생명과학 분야의 혁신을 이끌어보세요.</p>
+                        <ul class="text-sm text-gray-500 list-disc ml-5">
+                            <li>AI 기반 진단 및 치료 지원</li>
+                            <li>의료 데이터 통합 및 분석</li>
+                            <li>실제 적용 사례: <a href="https://youtu.be/DSOcjyV0oAE" class="underline text-blue-600" target="_blank">AI로 혁신하는 헬스케어</a></li>
+                        </ul>
+                    </div>
+                    <div class="card bg-white p-6 rounded-lg shadow-lg flex flex-col gap-2 md:col-span-2">
+                        <div class="text-3xl mb-2">🛒</div>
+                        <h3 class="text-xl font-semibold text-blue-700 mb-1">Retail and Consumer Goods<br><span class="text-base text-gray-500">리테일 & 소비재</span></h3>
+                        <p class="text-gray-700 mb-2">AI를 활용한 맞춤형 쇼핑, 수요 예측, 공급망 최적화 등 리테일과 소비재 산업의 변화를 주도하세요.</p>
+                        <ul class="text-sm text-gray-500 list-disc ml-5">
+                            <li>AI 기반 고객 맞춤 추천</li>
+                            <li>재고/공급망 최적화</li>
+                            <li>실제 적용 사례: <a href="https://www.microsoft.com/en/customers/story/23488-the-estee-lauder-companies-microsoft-copilot-studio" class="underline text-blue-600" target="_blank">에스티로더</a>, <a href="https://www.microsoft.com/en-us/industry/blog/retail/2025/04/10/more-human-centered-retail-with-ai/" class="underline text-blue-600" target="_blank">MediaMarktSaturn</a></li>
+                        </ul>
+                    </div>
                 </div>
-                
-                <div id="category-display" class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="text-center mt-10">
+                    <a href="https://imaginecup.microsoft.com/en-us/categories" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transition">공식 카테고리 안내 바로가기</a>
                 </div>
             </div>
         </section>
