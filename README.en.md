@@ -185,7 +185,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <!-- Badges -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Microsoft Imagine Cup](https://img.shields.io/badge/Microsoft-Imagine%20Cup-blue.svg)](https://imaginecup.microsoft.com/)
+[![Microsoft Imagine Cup](https://img.shields.io/badge/Microsoft-Imagine%20Cup-blue.svg)](https://imaginecup.microsoft.com/en-us)
 
 ---
 

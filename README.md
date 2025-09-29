@@ -6,7 +6,7 @@ Microsoft Imagine Cup Sprint 프로젝트에 오신 것을 환영합니다! 이 
 
 <!-- 배지들 -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Microsoft Imagine Cup](https://img.shields.io/badge/Microsoft-Imagine%20Cup-blue.svg)](https://imaginecup.microsoft.com/)
+[![Microsoft Imagine Cup](https://img.shields.io/badge/Microsoft-Imagine%20Cup-blue.svg)](https://imaginecup.microsoft.com/en-us)
 
 ---
 
@@ -196,7 +196,7 @@ Microsoft Imagine Cup은 학생 개발자들이 Microsoft 기술을 활용하여
 
 <!-- Badges -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Microsoft Imagine Cup](https://img.shields.io/badge/Microsoft-Imagine%20Cup-blue.svg)](https://imaginecup.microsoft.com/)
+[![Microsoft Imagine Cup](https://img.shields.io/badge/Microsoft-Imagine%20Cup-blue.svg)](https://imaginecup.microsoft.com/en-us)
 
 ---
 
