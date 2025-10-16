@@ -1,6 +1,6 @@
 # Microsoft Imagine Cup Sprint 프로젝트
 
-Microsoft Imagine Cup Sprint 프로젝트에 오신 것을 환영합니다! 이 저장소는 Microsoft Imagine C---
+Microsoft Imagine Cup Sprint 프로젝트에 오신 것을 환영합니다!
 
 **Microsoft Imagine Cup Sprint을 위해 ❤️로 제작되었습니다**
 
