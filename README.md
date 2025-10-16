@@ -177,7 +177,7 @@ Microsoft Imagine Cup은 학생 개발자들이 Microsoft 기술을 활용하여
 ## 📞 연락처
 
 이 프로젝트에 대한 문의사항이 있으시면 다음으로 연락주세요:
-- 이메일: [your-email@domain.com]
+- 이메일: [leeinhee@paranduru.me]
 - 프로젝트 링크: [https://github.com/Power-Platform-Users-Korea/ImagineCup](https://github.com/Power-Platform-Users-Korea/ImagineCup)
 
 ## 📄 라이선스
