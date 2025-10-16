@@ -13,7 +13,7 @@ Microsoft Imagine Cup Sprint 프로젝트에 오신 것을 환영합니다!
 ## 🌏 다른 언어로 읽기
 
 - [한국어](README.md) (현재 문서)
-- [English](README.en.md)혁신적인 솔루션을 담고 있습니다.
+- [English](README.en.md)
 - [Sprint to Imagine Cup 2026](https://power-platform-users-korea.github.io/ImagineCup/2026-imagine-cup/index.html)
 
 ## 🎯 Microsoft Imagine Cup 소개
