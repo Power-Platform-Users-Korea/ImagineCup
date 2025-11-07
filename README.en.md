@@ -7,12 +7,29 @@ Welcome to our Microsoft Imagine Cup Sprint project! This repository contains ou
 
 ### 1. Key Trends & Changes for Imagine Cup 2026
 - **AI for Impact**: Generative AI, Responsible AI, and social impact are core themes
-- **Team Structure**: 1-4 members, multidisciplinary and diverse teams are encouraged
+- **Three Core Pillars**: Innovate → Validate → Accelerate as a continuous growth cycle
+- **Team Structure**: 1-4 members (max 4), multidisciplinary and diverse teams are encouraged
+- **Eligibility**: Age 18+, enrolled high school or college/university students
+- **Two Paths**:
+  - **Scale Path**: Startups with proven traction (combined dilutive/external non-dilutive funding up to $5M USD)
+  - **Launch Path**: Early-stage builders (no dilutive funding or up to $100K USD in non-dilutive funding)
+- **Azure Credits**: Up to $5,000 USD available for MVP development and testing
 - **Judging Criteria**: Innovation, social impact, technical excellence, business potential, and presentation
 - **Prototype Required**: A working demo/app/web/AI model is essential
 - **Pitch Video**: Up to 3 minutes, impactful English presentation (storytelling + demo)
 
-### 2. Analysis of Recent Winning Projects (2022~2025)
+### 2. 2026 Imagine Cup Official Categories (5)
+> **Note**: These categories are meant to inspire, not limit. Solutions outside these areas are also welcome!
+
+1. **🛡️ Cybersecurity**: AI-powered threat detection, data protection, and building digital trust
+2. **📚 Education**: Personalized learning, closing education gaps, empowering teachers and students
+3. **💰 Financial Services**: Inclusive finance, fraud detection, and transparent financial systems
+4. **🧬 Health and Life Sciences**: Healthcare provider collaboration, personalized patient care, accelerating research
+5. **🛒 Retail and Consumer Goods**: Personalized shopping, demand forecasting, supply chain optimization
+
+**More Info**: [Official Categories](https://imaginecup.microsoft.com/en-us/categories)
+
+### 3. Analysis of Recent Winning Projects (2022~2025)
 #### Common Success Patterns
 - **Solving Real Problems**: Clear social pain points (environment, health, education, inclusion, etc.)
 - **Active Use of AI/Cloud**: Azure, OpenAI, IoT, Computer Vision, NLP, and other MS technologies
@@ -26,10 +43,35 @@ Welcome to our Microsoft Imagine Cup Sprint project! This repository contains ou
 - **2023 Winner (Kenya)**: AI tutor for underprivileged students (Azure OpenAI, chatbot)
 - **2022 Winner (Australia)**: Wildfire prediction AI + drone system (Azure AI, Computer Vision)
 
-### 3. Actionable Strategies for 2026
+### 4. The Three Core Pillars of Imagine Cup 2026
+Imagine Cup is not just a competition—it's a continuous journey of growth:
+
+#### 💡 Innovate (Building with Purpose)
+- **Sprint to Imagine Cup** program to leverage Microsoft AI technologies
+- Scale Track: Optimize advanced AI for enterprise standards
+- Launch Track: Transform prototypes into robust MVPs
+- Azure credits up to $5,000 USD available
+
+#### ✓ Validate (Turning Potential into Proof)
+- **Builder Series** reserved for semifinalists
+- Direct access to Microsoft experts and industry leaders
+- Validate product-market fit (PMF) and build resilient AI architecture
+
+#### 🚀 Accelerate (Scaling Toward the Future)
+- **World Championship** to compete with top teams globally
+- **Prizes & Benefits**:
+  - **Scale Winner**: $100,000 USD + Private mentorship session with Satya Nadella
+  - **Launch Winner**: $50,000 USD (announced after Semifinals)
+  - Top 3 Scale teams advance to World Championship
+  - Microsoft for Startups partnership opportunities
+
+**Learn More**: [Microsoft Student Developer Blog](https://techcommunity.microsoft.com/blog/StudentDeveloperBlog/innovate-validate-accelerate-/4456436)
+
+### 5. Actionable Strategies for 2026
 #### 1) Topic Selection
 - **Social Impact**: Clearly define a problem relevant to Korea/global (climate, health, education, inclusion, etc.)
 - **AI Utilization**: Use generative AI, responsible AI, and data ethics
+- **Category Consideration**: Review the 5 official categories (but not limited to them)
 - **Feasibility**: Design an MVP that can actually be built
 
 #### 2) Team Building
@@ -38,6 +80,7 @@ Welcome to our Microsoft Imagine Cup Sprint project! This repository contains ou
 
 #### 3) Technical Strategy
 - **Leverage Microsoft Azure**: AI, ML, IoT, Web App, Database, etc.
+- **Azure Credits**: Apply for up to $5,000 USD credits for MVP development
 - **Use OpenAI, Copilot, Power Platform, and latest MS services**
 - **GitHub for Collaboration**: Code management, teamwork, CI/CD automation
 
@@ -50,23 +93,29 @@ Welcome to our Microsoft Imagine Cup Sprint project! This repository contains ou
 - **README/Docs**: Both Korean & English, setup/contribution guides, architecture diagrams
 - **Open Source License**: Clearly state (e.g., MIT)
 
-### 4. Preparation Checklist
-- [ ] Define the problem and social impact
-- [ ] Assign team roles and manage schedule
+### 6. Preparation Checklist
+- [ ] Define the problem and social impact clearly
+- [ ] Review the 5 official categories (or alternative ideas)
+- [ ] Assign team roles and manage schedule (max 4 members)
+- [ ] Choose between Scale vs Launch path (check funding criteria)
+- [ ] Apply for Azure credits (up to $5,000 USD)
 - [ ] Study Azure/MS tech and build PoC (prototype)
 - [ ] Build a working MVP/demo
 - [ ] Write and practice a 3-min English pitch video script
 - [ ] Review judging criteria (innovation, impact, completeness, business, presentation)
 - [ ] Use GitHub/Notion for collaboration and documentation
 
-### 5. Useful Links
+### 7. Useful Links
 - [Imagine Cup Official Site](https://imaginecup.microsoft.com/)
+- [Official Categories](https://imaginecup.microsoft.com/en-us/categories)
+- [How It Works - Scale & Launch Paths](https://imaginecup.microsoft.com/en-us/compete/howitworks)
+- [Innovate, Validate, Accelerate - Microsoft Blog](https://techcommunity.microsoft.com/blog/StudentDeveloperBlog/innovate-validate-accelerate-/4456436)
 - [2025 Imagine Cup Winners](https://imaginecup.microsoft.com/en-us/winners)
 - [Microsoft Learn - Azure AI](https://learn.microsoft.com/en-us/training/paths/build-ai-solutions-azure/)
 - [GitHub Student Pack](https://education.github.com/pack)
 - [Official Pitch Video Guide](https://imaginecup.microsoft.com/en-us/resources)
 
-> **Korean teams can win! Focus on cutting-edge AI/cloud, social impact, team diversity, and impactful presentations. A working demo and clear storytelling are the most important factors.**
+> **Korean teams can win!** Embrace the Innovate → Validate → Accelerate cycle. Focus on cutting-edge AI/cloud technology, social impact, team diversity, and impactful presentations. A working demo and clear storytelling are the most important factors.
 
 ---
 
