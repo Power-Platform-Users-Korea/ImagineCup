@@ -232,26 +232,76 @@ graph TB
 
 ## 🚀 Quick Start
 
+> **Important**: This project customizes the official Azure AI Chat template.
+
+### Step 0: Understanding the Azure AI Chat Template
+
+First, understand the structure of the template you'll clone:
+
+```
+get-started-with-ai-chat/
+├── src/
+│   ├── api/              ← 🔧 Python Flask backend (we'll modify this)
+│   │   ├── app.py        ← Main API file (complete replacement)
+│   │   └── ...
+│   ├── frontend/         ← ✅ TypeScript UI (use as-is)
+│   └── ...
+├── infra/                ← Azure resource definitions (Bicep)
+├── docs/                 ← Official documentation
+├── azure.yaml            ← Azure Developer CLI config
+└── pyproject.toml        ← Python dependencies
+```
+
+**Key Points**:
+- ✅ **Backend (`src/api/`)**: Completely replace with unemployment assistant logic
+- ✅ **Frontend (`src/frontend/`)**: Use template as-is (provides chat UI)
+- ✅ **Infrastructure (`infra/`)**: Automatically creates Azure resources
+
+---
+
 ### Step 1: Clone Repository
 
-> **Note**: This project is built on the Azure AI Chat template.
-
 ```bash
-# Clone Azure AI Chat template (provides basic structure)
+# Clone Azure AI Chat template
 git clone https://github.com/Azure-Samples/get-started-with-ai-chat.git unemployment-assistant
 cd unemployment-assistant
 
-# Or use the complete project (to be updated after deployment)
+# Verify current location
+pwd
+# Output example: /Users/username/unemployment-assistant
+```
+
+**Or use the complete project** (to be updated after deployment):
+```bash
 # git clone https://github.com/Power-Platform-Users-Korea/ImagineCup.git
 # cd ImagineCup/2026-imagine-cup/unemployment-assistant
 ```
 
+---
+
 ### Step 2: Create Custom Directories
 
+Create these folders in the **project root**:
+
 ```bash
-mkdir prompts
-mkdir data
-mkdir logs
+# Verify you're in unemployment-assistant/
+pwd
+
+# Create custom data folders
+mkdir -p prompts        # System prompts storage
+mkdir -p data           # Labor law database storage
+mkdir -p logs           # Log files (optional)
+```
+
+**Verify folder structure**:
+```bash
+ls -la
+# Should see:
+# drwxr-xr-x  prompts/
+# drwxr-xr-x  data/
+# drwxr-xr-x  logs/
+# drwxr-xr-x  src/
+# -rw-r--r--  azure.yaml
 ```
 
 ### Step 3: Create System Prompt
@@ -388,7 +438,14 @@ Create `data/labor_law_info.md` with:
 
 ### Step 5: Modify Backend Code
 
-Edit `src/api/app.py` with same structure as library project:
+**⚠️ Important**: You'll completely replace the template's backend with unemployment assistant logic.
+
+**Backup the original first** (optional, for reference):
+```bash
+cp src/api/app.py src/api/app.py.backup
+```
+
+**Replace** `src/api/app.py` with unemployment assistant backend:
 
 ```python
 import os
@@ -479,12 +536,148 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=False)
 ```
 
-### Step 6: Deploy
+**Key Changes**:
+- ✅ Loads custom prompts from `prompts/unemployment_assistant.md`
+- ✅ Loads labor law data from `data/labor_law_info.md`
+- ✅ Uses Flask `/chat` endpoint compatible with template frontend
+- ✅ Includes `/health` endpoint for monitoring
+
+---
+
+### Step 6: Environment Variables
+
+The Azure deployment automatically configures these variables. Understanding them helps with troubleshooting:
+
+| Variable | Description | Set By |
+|----------|-------------|--------|
+| `AZURE_OPENAI_API_KEY` | OpenAI authentication key | `azd up` |
+| `AZURE_OPENAI_ENDPOINT` | OpenAI service URL | `azd up` |
+| `AZURE_OPENAI_DEPLOYMENT_NAME` | GPT model name | `azure.yaml` (default: gpt-4) |
+
+**No manual configuration needed** - Azure Developer CLI handles this during deployment.
+
+---
+
+### Step 7: Azure Deployment
+
+#### 7.1 Initialize Azure Developer CLI
 
 ```bash
 azd init
+```
+
+**Interactive prompts**:
+- Environment name: `unemployment-assistant` (or any name you prefer)
+- This creates `.azure/` folder with configuration
+
+#### 7.2 Login to Azure
+
+```bash
 azd auth login
+```
+
+This opens browser for Azure authentication.
+
+**Verify login**:
+```bash
+az account show
+```
+
+#### 7.3 Deploy to Azure
+
+```bash
 azd up --location koreacentral
+```
+
+**Recommended regions for Korea**:
+- `koreacentral` - Korea Central (Seoul)
+- `koreasouth` - Korea South (Busan)
+- `japaneast` - Japan East (Tokyo, if Korea full)
+
+**Deployment process** (10-15 minutes total):
+1. ⏳ **Azure resources creation** (5-7 min)
+   - Azure OpenAI Service
+   - Container Apps Environment
+   - Container Registry
+   - Application Insights (monitoring)
+
+2. 🔨 **Docker image build** (3-5 min)
+   - Backend containerization
+   - Frontend containerization
+
+3. 🚀 **Container deployment** (2-3 min)
+   - Push to Container Registry
+   - Deploy to Container Apps
+
+**Successful output**:
+```
+Deploying services (azd deploy)
+
+  (✓) Done: Deploying service api
+  - Endpoint: https://api.xxx.koreacentral.azurecontainerapps.io
+
+  (✓) Done: Deploying service web
+  - Endpoint: https://web.xxx.koreacentral.azurecontainerapps.io
+
+SUCCESS: Your application was provisioned and deployed to Azure in 12 minutes 34 seconds.
+```
+
+---
+
+### Step 8: Deployment Verification & Testing
+
+#### 8.1 Check Deployment URLs
+
+```bash
+azd show
+```
+
+**Look for**:
+- `web` service URL - This is your **main application URL**
+- `api` service URL - Backend API endpoint
+
+#### 8.2 Open Web UI
+
+Visit the `web` URL in your browser:
+```
+https://web-xxx.koreacentral.azurecontainerapps.io
+```
+
+**You should see**:
+- Chat interface with message input
+- Ready to send messages
+
+#### 8.3 Test API Directly (Optional)
+
+```bash
+# Replace with your actual API URL
+curl -X POST https://api-xxx.koreacentral.azurecontainerapps.io/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Can I get unemployment benefits if I worked for 8 months?"}'
+```
+
+**Expected response**:
+```json
+{
+  "response": "✅ Yes! You meet the basic eligibility...",
+  "model": "gpt-4",
+  "usage": {
+    "prompt_tokens": 1234,
+    "completion_tokens": 567,
+    "total_tokens": 1801
+  }
+}
+```
+
+#### 8.4 Health Check
+
+```bash
+curl https://api-xxx.koreacentral.azurecontainerapps.io/health
+```
+
+**Expected**:
+```json
+{"status": "healthy", "service": "Rights Guardian"}
 ```
 
 ---
@@ -583,33 +776,413 @@ reducing staff due to business difficulties. Can I get unemployment benefits?
 
 ---
 
-## 🐛 Troubleshooting
+## 🔧 Troubleshooting
 
-### Issue: AI responds too formally
+### Deployment Errors
 
-**Solution**: Adjust prompt tone
+#### Issue 1: "Subscription not found" or "No subscriptions found"
+
+**Cause**: Not logged in or wrong subscription selected
+
+**Solution**:
+```bash
+# Login again
+az login
+
+# List available subscriptions
+az account list --output table
+
+# Set correct subscription
+az account set --subscription "Your Subscription ID"
+
+# Verify
+az account show
+```
+
+#### Issue 2: "Location not available" or "OpenAI quota exceeded"
+
+**Cause**: Selected Azure region doesn't support OpenAI or quota full
+
+**Solution**:
+```bash
+# Try different region
+azd up --location japaneast    # Tokyo
+azd up --location eastus        # US East
+azd up --location westeurope    # West Europe
+
+# Or request quota increase:
+# Azure Portal → Quotas → Request increase
+```
+
+#### Issue 3: Container build fails - "Failed to build image"
+
+**Cause**: Docker/build environment issues
+
+**Solution**:
+```bash
+# Check Docker is running (if using local build)
+docker --version
+
+# Clear azd cache and retry
+azd down --purge
+azd up --location koreacentral
+
+# Check build logs
+azd deploy --debug
+```
+
+#### Issue 4: Deployment succeeds but app doesn't start
+
+**Cause**: Missing files or environment variables
+
+**Solution**:
+```bash
+# Verify required files exist
+ls -la prompts/unemployment_assistant.md
+ls -la data/labor_law_info.md
+
+# Check container logs
+az containerapp logs show \
+  --name api \
+  --resource-group <resource-group-name> \
+  --follow
+
+# Look for file loading errors in logs
+```
+
+---
+
+### Runtime Errors
+
+#### Issue 5: "404 Not Found" on /chat endpoint
+
+**Cause**: Frontend/backend mismatch or routing issue
+
+**Solution**:
+```bash
+# Test API directly
+curl https://api-xxx.azurecontainerapps.io/health
+
+# If health works but chat doesn't, check backend code
+# Verify route is defined: @app.route("/chat", methods=["POST"])
+```
+
+#### Issue 6: "Failed to load prompts" error in logs
+
+**Cause**: Prompt files not found in container
+
+**Solution**:
+```bash
+# Verify files exist in project root (not src/api/)
+unemployment-assistant/
+├── prompts/unemployment_assistant.md  ← Must be here
+├── data/labor_law_info.md             ← Must be here
+└── src/api/app.py
+
+# Redeploy after fixing file locations
+azd deploy
+```
+
+#### Issue 7: "OpenAI API key not found" or authentication errors
+
+**Cause**: Environment variables not set
+
+**Solution**:
+```bash
+# Check environment variables in Container App
+az containerapp show \
+  --name api \
+  --resource-group <rg-name> \
+  --query "properties.template.containers[0].env"
+
+# If missing, redeploy:
+azd down
+azd up --location koreacentral
+```
+
+#### Issue 8: Slow responses or timeout
+
+**Cause**: GPT-4 can be slow, or insufficient container resources
+
+**Solution**:
+1. **Use GPT-3.5-turbo** for faster responses:
+   ```python
+   # In src/api/app.py
+   model=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-35-turbo")
+   ```
+
+2. **Increase timeout**:
+   ```python
+   # Add timeout parameter
+   response = client.chat.completions.create(
+       model="gpt-4",
+       messages=[...],
+       timeout=30  # seconds
+   )
+   ```
+
+3. **Scale up Container App**:
+   ```bash
+   az containerapp update \
+     --name api \
+     --resource-group <rg-name> \
+     --cpu 1.0 --memory 2.0Gi
+   ```
+
+---
+
+### AI Response Quality Issues
+
+#### Issue 9: AI responds too formally
+
+**Solution**: Adjust prompt tone in `prompts/unemployment_assistant.md`
 
 ```markdown
 ## Tone and Manner
 - Firm but warm
-- Use "you" address
-- More conversational
+- Use "you" address (not "client" or "worker")
+- More conversational, less legal jargon
 - Include empathy and encouragement
+
+Example:
+❌ "The individual should proceed with the following steps..."
+✅ "Here's what you should do right now..."
 ```
 
-### Issue: Mistaken for legal advice
+#### Issue 10: AI mistaken for legal advice
 
-**Solution**: Clear limitations
+**Solution**: Strengthen limitations in system prompt
 
 ```markdown
-⚠️ Important: I am an AI consultation assistant
+⚠️ IMPORTANT: I am an AI consultation assistant
 
-This information is general guidance.
-For specific legal advice, consult labor attorney/specialist.
+✅ What I do:
+- Provide general information about labor laws
+- Guide immediate actions in emergencies
+- Connect you to professional help
 
-Emergency: Ministry of Employment 1350
-Free Legal Aid: Korea Legal Aid Corporation 132
+❌ What I CANNOT do:
+- Give legal advice on your specific case
+- Replace labor attorney/specialist consultation
+- Represent you in legal proceedings
+
+For specific legal advice: Consult professionals
+- Emergency: Ministry of Employment 1350
+- Free Legal Aid: Korea Legal Aid Corporation 132
 ```
+
+---
+
+## 💰 Resource Management & Cost Optimization
+
+### Monthly Cost Estimates (Korea Central Region)
+
+| Resource | Tier | Estimated Monthly Cost |
+|----------|------|----------------------|
+| **Azure OpenAI (GPT-4)** | Pay-as-you-go | ₩20,000 - 40,000 |
+| **Container Apps** | Consumption | ₩5,000 - 10,000 |
+| **Container Registry** | Basic | ₩6,000 |
+| **Application Insights** | Basic (5GB free) | ₩0 - 5,000 |
+| **Total** | - | **₩30,000 - 60,000** |
+
+**Notes**:
+- GPT-4 costs based on ~100 consultations/month (avg 1500 tokens each)
+- Container Apps costs with auto-scaling (0-2 instances)
+- Actual costs vary based on usage
+- First-time users may qualify for Azure free credits
+
+### Cost Optimization Tips
+
+#### 1. Use GPT-3.5-Turbo Instead of GPT-4
+
+**Savings**: ~70% reduction in AI costs
+
+```python
+# In src/api/app.py
+model=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-35-turbo")
+```
+
+**Trade-off**: Slightly lower response quality, but sufficient for most consultations
+
+#### 2. Enable Container Apps Auto-Scaling
+
+**Default behavior**: Scales to 0 when idle (no cost)
+
+Verify in `azure.yaml`:
+```yaml
+services:
+  api:
+    scaling:
+      minReplicas: 0  # Scales down to 0 when no traffic
+      maxReplicas: 2
+```
+
+#### 3. Set Up Budget Alerts
+
+```bash
+# Azure Portal → Cost Management → Budgets
+# Create alert for when spending exceeds ₩50,000
+```
+
+---
+
+### Resource Cleanup
+
+#### Temporary Shutdown (Keep Resources)
+
+**Scenario**: Pause project but keep data for later
+
+```bash
+# Scale down to 0 instances (no Container Apps charges)
+az containerapp update \
+  --name api \
+  --resource-group <rg-name> \
+  --min-replicas 0 \
+  --max-replicas 0
+
+# OpenAI service has no idle charges (pay per use)
+```
+
+**Resume later**:
+```bash
+# Restore auto-scaling
+az containerapp update \
+  --name api \
+  --resource-group <rg-name> \
+  --min-replicas 0 \
+  --max-replicas 2
+```
+
+#### Complete Cleanup (Delete All Resources)
+
+**WARNING**: This deletes everything permanently!
+
+```bash
+# Delete entire resource group and all resources
+azd down --purge
+
+# Confirm when prompted (type 'y')
+```
+
+**What gets deleted**:
+- ✅ Azure OpenAI Service
+- ✅ Container Apps
+- ✅ Container Registry
+- ✅ Application Insights
+- ✅ All configuration and data
+
+**Cost after cleanup**: ₩0
+
+---
+
+### Redeployment After Cleanup
+
+If you deleted everything and want to redeploy:
+
+```bash
+# Same as initial deployment
+azd up --location koreacentral
+```
+
+**Time**: ~10-15 minutes (same as first deployment)
+
+---
+
+## 📊 Monitoring & Logging
+
+### View Application Logs
+
+#### Real-time Log Streaming
+
+```bash
+# API backend logs
+az containerapp logs show \
+  --name api \
+  --resource-group <resource-group-name> \
+  --follow
+
+# Frontend logs
+az containerapp logs show \
+  --name web \
+  --resource-group <resource-group-name> \
+  --follow
+```
+
+**Look for**:
+- ✅ `Rights Guardian prompts loaded successfully` - Backend started correctly
+- ✅ `Consultation request: ...` - Incoming requests
+- ❌ `Failed to load prompts` - File loading error
+- ❌ `OpenAI API key not found` - Environment variable issue
+
+#### Recent Logs (Last 100 Lines)
+
+```bash
+az containerapp logs show \
+  --name api \
+  --resource-group <rg-name> \
+  --tail 100
+```
+
+---
+
+### Application Insights (Advanced Monitoring)
+
+#### Access Application Insights
+
+1. Go to **Azure Portal** → **Resource Groups** → Your resource group
+2. Click **Application Insights** resource
+3. Navigate to:
+   - **Live Metrics**: Real-time traffic and performance
+   - **Failures**: Error tracking
+   - **Performance**: Response times
+   - **Logs**: Query all telemetry data
+
+#### Useful Queries
+
+**Find slow requests** (over 3 seconds):
+```kusto
+requests
+| where duration > 3000
+| project timestamp, name, duration, resultCode
+| order by duration desc
+```
+
+**Count consultations per day**:
+```kusto
+requests
+| where name == "POST /chat"
+| summarize count() by bin(timestamp, 1d)
+| render timechart
+```
+
+**Error rate**:
+```kusto
+requests
+| summarize Total=count(), Errors=countif(success == false)
+| extend ErrorRate = (Errors * 100.0) / Total
+```
+
+---
+
+### Health Monitoring
+
+#### Manual Health Check
+
+```bash
+curl https://api-xxx.koreacentral.azurecontainerapps.io/health
+```
+
+**Expected**:
+```json
+{"status": "healthy", "service": "Rights Guardian"}
+```
+
+#### Set Up Automated Health Alerts (Optional)
+
+**Azure Portal** → **Container App** → **Alerts** → **Create Alert Rule**:
+- Metric: HTTP response code 5xx
+- Threshold: > 5 errors in 5 minutes
+- Action: Send email notification
 
 ---
 

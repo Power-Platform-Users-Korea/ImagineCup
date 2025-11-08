@@ -232,26 +232,76 @@ graph TB
 
 ## 🚀 빠른 시작
 
+> **중요**: 이 프로젝트는 Azure AI Chat 공식 템플릿을 기반으로 커스터마이징합니다.
+
+### 0단계: Azure AI Chat 템플릿 이해하기
+
+먼저 복제할 템플릿의 구조를 이해하세요:
+
+```
+get-started-with-ai-chat/
+├── src/
+│   ├── api/              ← 🔧 Python Flask 백엔드 (이 부분을 수정합니다)
+│   │   ├── app.py        ← 메인 API 파일 (전체 교체)
+│   │   └── ...
+│   ├── frontend/         ← ✅ TypeScript UI (그대로 사용)
+│   └── ...
+├── infra/                ← Azure 리소스 정의 (Bicep)
+├── docs/                 ← 공식 문서
+├── azure.yaml            ← Azure Developer CLI 설정
+└── pyproject.toml        ← Python 의존성
+```
+
+**핵심 포인트**:
+- ✅ **백엔드 (`src/api/`)**: 실업급여 상담 로직으로 완전 교체
+- ✅ **프론트엔드 (`src/frontend/`)**: 템플릿 그대로 사용 (채팅 UI 제공)
+- ✅ **인프라 (`infra/`)**: 자동으로 Azure 리소스 생성
+
+---
+
 ### 1단계: 저장소 복제
 
-> **참고**: 이 프로젝트는 Azure AI Chat 템플릿을 기반으로 구축되었습니다.
-
 ```bash
-# Azure AI Chat 템플릿 복제 (기본 구조 제공)
+# Azure AI Chat 템플릿 복제
 git clone https://github.com/Azure-Samples/get-started-with-ai-chat.git unemployment-assistant
 cd unemployment-assistant
 
-# 또는 완성된 프로젝트 사용 (배포 후 업데이트 예정)
+# 현재 위치 확인
+pwd
+# 출력 예시: /Users/username/unemployment-assistant
+```
+
+**또는 완성된 프로젝트 사용** (배포 후 업데이트 예정):
+```bash
 # git clone https://github.com/Power-Platform-Users-Korea/ImagineCup.git
 # cd ImagineCup/2026-imagine-cup/unemployment-assistant
 ```
 
+---
+
 ### 2단계: 커스텀 폴더 생성
 
+**프로젝트 루트**에서 다음 폴더를 생성합니다:
+
 ```bash
-mkdir prompts
-mkdir data
-mkdir logs
+# 현재 위치가 unemployment-assistant/ 인지 확인
+pwd
+
+# 커스텀 데이터 폴더 생성
+mkdir -p prompts        # 시스템 프롬프트 저장
+mkdir -p data           # 노동법 데이터베이스 저장
+mkdir -p logs           # 로그 파일 (선택사항)
+```
+
+**폴더 구조 확인**:
+```bash
+ls -la
+# 다음이 보여야 합니다:
+# drwxr-xr-x  prompts/
+# drwxr-xr-x  data/
+# drwxr-xr-x  logs/
+# drwxr-xr-x  src/
+# -rw-r--r--  azure.yaml
 ```
 
 ### 3단계: 시스템 프롬프트 작성
@@ -649,7 +699,14 @@ mkdir logs
 
 ### 5단계: 백엔드 코드 수정
 
-`src/api/app.py` 파일을 광명시 도서관과 동일한 구조로 수정:
+⚠️ **중요**: 기존 `src/api/app.py` 파일을 **완전히 교체**합니다.
+
+**기존 파일 백업** (선택사항):
+```bash
+cp src/api/app.py src/api/app.py.backup
+```
+
+**`src/api/app.py` 파일 내용을 다음으로 교체**:
 
 ```python
 import os
@@ -740,12 +797,314 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=False)
 ```
 
-### 6단계: 배포
+---
+
+### 6단계: 환경 변수 이해하기
+
+위 코드에서 사용하는 환경 변수는 **배포 시 자동으로 설정**됩니다:
+
+```python
+# 이 변수들은 azd up 실행 시 Azure에서 자동 생성
+os.getenv("AZURE_OPENAI_API_KEY")           # OpenAI API 키
+os.getenv("AZURE_OPENAI_ENDPOINT")          # OpenAI 엔드포인트 URL
+os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")   # 모델 배포 이름 (기본: gpt-4o-mini)
+```
+
+**배포 후 확인 방법**:
+```bash
+azd env get-values
+```
+
+---
+
+### 7단계: Azure 배포
+
+#### 7.1 프로젝트 초기화
 
 ```bash
+# Azure Developer CLI가 azure.yaml을 자동 감지합니다
 azd init
+
+# 프롬프트가 나타나면:
+# - Environment name: unemployment-assistant (또는 원하는 이름)
+# - Subscription: 사용할 Azure 구독 선택
+```
+
+#### 7.2 Azure 로그인
+
+```bash
 azd auth login
+# 브라우저가 열리고 Azure 계정으로 로그인
+```
+
+#### 7.3 배포 시작
+
+```bash
+# 한국 리전에 배포 (약 10-15분 소요)
 azd up --location koreacentral
+
+# 또는 다른 리전 선택:
+# azd up --location eastus        # 미국 동부
+# azd up --location westeurope    # 유럽 서부
+```
+
+**배포 과정**:
+1. ⏳ Azure 리소스 생성 (5-7분)
+   - Resource Group
+   - Azure OpenAI Service
+   - Container Apps Environment
+   - Container Registry
+   - Storage Account
+   - Application Insights (선택)
+
+2. 🔨 Docker 이미지 빌드 (3-5분)
+   - 백엔드 Flask 앱
+   - 프론트엔드 TypeScript 앱
+
+3. 🚀 컨테이너 배포 (2-3분)
+   - Azure Container Apps에 배포
+   - 환경 변수 자동 설정
+   - HTTPS 엔드포인트 생성
+
+**배포 완료 시 출력 예시**:
+```
+✓ Provisioned resources
+✓ Built container images
+✓ Deployed containers
+
+Endpoints:
+  - Frontend: https://ca-[random]-frontend.koreacentral.azurecontainerapps.io
+  - Backend API: https://ca-[random]-api.koreacentral.azurecontainerapps.io
+
+You can access the application at the Frontend URL above.
+```
+
+---
+
+### 8단계: 배포 확인 및 테스트
+
+#### 8.1 배포된 URL 확인
+
+```bash
+# 모든 엔드포인트 확인
+azd env get-values | grep SERVICE_.*_URI
+
+# 출력 예시:
+# SERVICE_WEB_URI=https://ca-xyz-frontend.koreacentral.azurecontainerapps.io
+# SERVICE_API_URI=https://ca-xyz-api.koreacentral.azurecontainerapps.io
+```
+
+#### 8.2 웹 UI 테스트
+
+브라우저에서 Frontend URL을 열고:
+```
+예시 질문:
+- "상사가 사직서 쓰라고 강요합니다"
+- "실업급여 받을 수 있나요?"
+- "권고사직과 자진퇴사의 차이는?"
+```
+
+#### 8.3 API 직접 테스트
+
+```bash
+# Backend API URL 저장
+API_URL=$(azd env get-values | grep SERVICE_API_URI | cut -d'=' -f2)
+
+# 테스트 요청
+curl -X POST "$API_URL/chat" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "회사에서 사직서 쓰라고 하는데 어떻게 하죠?"
+  }'
+
+# 예상 응답: AI의 긴급 대응 가이드
+```
+
+#### 8.4 Health Check
+
+```bash
+curl "$API_URL/health"
+# 예상 응답: {"status": "healthy", "service": "실업급여 권리 지킴이"}
+```
+
+---
+
+## 🔧 문제 해결 (Troubleshooting)
+
+### 배포 실패 시
+
+#### 문제 1: "Subscription not found"
+```bash
+# Azure 계정 확인
+az account list --output table
+
+# 올바른 구독 설정
+az account set --subscription "구독 ID"
+
+# 다시 시도
+azd up --location koreacentral
+```
+
+#### 문제 2: "OpenAI quota exceeded"
+```
+오류: Azure OpenAI 할당량 초과
+
+해결:
+1. Azure Portal → Azure OpenAI → Quotas 확인
+2. 다른 리전 시도: azd up --location eastus
+3. 또는 할당량 증가 요청
+```
+
+#### 문제 3: 프롬프트 로드 실패
+```
+❌ 프롬프트 로드 실패: [Errno 2] No such file or directory
+
+해결:
+1. 폴더 위치 확인: ls -la prompts/ data/
+2. 파일 존재 확인: ls prompts/unemployment_assistant.md
+3. 경로가 올바른지 확인: cat src/api/app.py | grep "prompts/"
+```
+
+#### 문제 4: "Container build failed"
+```bash
+# 로그 확인
+azd deploy --debug
+
+# Docker 빌드 로컬 테스트
+docker build -t test-api src/api/
+```
+
+### 런타임 오류
+
+#### AI 응답 없음
+```bash
+# 환경 변수 확인
+azd env get-values | grep AZURE_OPENAI
+
+# 로그 확인 (Azure Portal)
+# Container Apps → [your-api-app] → Log Stream
+```
+
+#### 느린 응답 시간
+```python
+# src/api/app.py 수정
+response = client.chat.completions.create(
+    model=...,
+    messages=...,
+    temperature=0.7,
+    max_tokens=500,  # 1000 → 500으로 줄임
+    timeout=10       # 타임아웃 추가
+)
+```
+
+---
+
+## 💰 비용 관리 및 리소스 정리
+
+### 예상 비용 (월 기준)
+
+| 리소스 | 예상 비용 (월) | 설명 |
+|--------|----------------|------|
+| **Azure OpenAI (GPT-4)** | ₩20,000-40,000 | 사용량 기반 (토큰당 과금) |
+| **Container Apps** | ₩5,000-10,000 | vCPU/메모리 사용량 |
+| **Storage Account** | ₩500-1,000 | 저장 공간 |
+| **Container Registry** | ₩2,000-3,000 | 이미지 저장 |
+| **Application Insights** | ₩1,000-2,000 | 로그/모니터링 |
+| **총 예상** | **₩30,000-60,000** | 사용 패턴에 따라 변동 |
+
+> **중요**: GPT-4 사용 시 비용이 높습니다. 개발/테스트 시 gpt-4o-mini 권장.
+
+### 비용 확인
+
+```bash
+# Azure Portal에서 확인
+# 1. portal.azure.com 접속
+# 2. Cost Management + Billing
+# 3. Cost Analysis → 리소스 그룹 선택
+```
+
+### 리소스 일시 중지
+
+Container Apps는 **요청이 없으면 자동으로 0으로 스케일**되어 비용 절감:
+```
+활성 사용: 비용 발생
+유휴 상태: 최소 비용 (거의 무료)
+```
+
+### 리소스 완전 삭제
+
+**⚠️ 경고**: 이 작업은 모든 데이터와 리소스를 삭제합니다!
+
+```bash
+# 모든 Azure 리소스 삭제 (약 5분 소요)
+azd down
+
+# 확인 프롬프트:
+# ? Total resources to delete: X, are you sure you want to continue? (y/N)
+y
+
+# 삭제 완료 후 확인
+azd env list
+# (환경이 삭제되었음)
+```
+
+### 재배포
+
+코드 수정 후 빠른 재배포:
+
+```bash
+# 코드만 재배포 (인프라 유지)
+azd deploy
+
+# 전체 재배포 (인프라 포함)
+azd up
+```
+
+---
+
+## 📊 모니터링 및 로그
+
+### Application Insights
+
+배포 시 자동으로 생성됩니다:
+
+```bash
+# Application Insights URL 확인
+azd env get-values | grep APPLICATIONINSIGHTS
+
+# Azure Portal에서 확인:
+# Application Insights → [your-app-insights] → Logs
+```
+
+**유용한 쿼리**:
+```kusto
+// 최근 에러 로그
+traces
+| where severityLevel >= 3
+| order by timestamp desc
+| take 50
+
+// API 응답 시간
+requests
+| summarize avg(duration), max(duration) by name
+| order by avg_duration desc
+```
+
+### 로그 스트리밍
+
+실시간 로그 확인:
+```bash
+# Azure CLI 로그인
+az login
+
+# 로그 스트림 (API)
+az containerapp logs show \
+  --name ca-[your-api-name] \
+  --resource-group rg-[your-resource-group] \
+  --follow
+
+# 또는 Azure Portal:
+# Container Apps → [your-app] → Log stream
 ```
 
 ---
@@ -844,35 +1203,6 @@ azd up --location koreacentral
 
 ---
 
-## 🐛 문제 해결
-
-### 문제: AI가 너무 격식있게 응답
-
-**해결**: 프롬프트 톤 조정
-
-```markdown
-## 톤앤매너
-- 단호하지만 따뜻하게
-- "당신" 호칭 사용
-- "~습니다" 보다 "~해요" 체
-- 공감과 격려 포함
-```
-
-### 문제: 법률 자문으로 오해
-
-**해결**: 명확한 한계 명시
-
-```markdown
-⚠️ 중요: 저는 AI 상담 도우미입니다
-
-이 정보는 일반적인 안내이며,
-구체적인 법률 자문은 노무사/변호사와 상담하세요.
-
-긴급 상황: 고용노동부 1350
-무료 법률 지원: 대한법률구조공단 132
-```
-
----
 
 ## 🤝 기여하기
 
