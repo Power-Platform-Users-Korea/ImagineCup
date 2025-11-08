@@ -169,31 +169,39 @@ Evidence Collection Checklist:
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────┐
-│  Worker         │
-│  (Web/Mobile)   │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Azure Container│
-│  Apps (Web)     │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Azure Container│
-│  Apps (API)     │
-│  Flask Backend  │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Azure OpenAI   │
-│  GPT-4          │
-│  + Labor Law DB │
-└─────────────────┘
+```mermaid
+graph TB
+    subgraph "User Layer"
+        A[👤 Worker<br/>Web/Mobile Interface]
+    end
+
+    subgraph "Azure Cloud"
+        B[🌐 Azure Container Apps<br/>Frontend Web]
+        C[⚙️ Azure Container Apps<br/>Flask API Backend]
+        D[🤖 Azure OpenAI Service<br/>GPT-4]
+        E[(📚 Labor Law Database<br/>Employment Insurance Act,<br/>Labor Standards Act,<br/>Court Precedents)]
+    end
+
+    subgraph "External Support"
+        F[📞 Ministry of Employment<br/>1350]
+        G[⚖️ Legal Aid Corporation<br/>132]
+    end
+
+    A -->|Consultation Request| B
+    B -->|API Call| C
+    C -->|Send Prompt| D
+    C -->|Query Legal Info| E
+    D -->|AI Response| C
+    C -->|Consultation Result| B
+    B -->|Real-time Guidance| A
+    C -.->|Emergency Referral| F
+    C -.->|Legal Aid Referral| G
+
+    style A fill:#e1f5ff
+    style D fill:#fff4e1
+    style E fill:#f0f0f0
+    style F fill:#ffe1e1
+    style G fill:#ffe1e1
 ```
 
 **Tech Stack:**
@@ -202,6 +210,7 @@ Evidence Collection Checklist:
 - **Legal DB:** Employment Insurance Act, Labor Standards Act, Supreme Court precedents
 - **Hosting:** Azure Container Apps
 - **Deployment:** Azure Developer CLI (azd)
+- **Monitoring:** Azure Application Insights (optional)
 
 ---
 
