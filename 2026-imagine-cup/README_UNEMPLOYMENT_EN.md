@@ -25,6 +25,25 @@ This project is an **AI assistant protecting workers' legitimate unemployment be
 
 ---
 
+## ⚠️ Important Legal Disclaimer
+
+**This service is an AI-powered information tool and does NOT replace professional legal advice.**
+
+- ✅ **General Information**: Unemployment benefits system, basic labor law guidance
+- ✅ **Emergency Response Guide**: Immediate actions to take in risky situations
+- ✅ **Professional Referral**: Free legal aid organization information
+
+- ❌ **NOT Legal Advice**: Consult professionals for legal judgment on individual cases
+- ❌ **NOT Litigation Support**: Legal procedures require attorney/labor specialist consultation
+
+**Emergency Contacts:**
+- Ministry of Employment and Labor: **1350** (Weekdays 09:00-18:00)
+- Korea Legal Aid Corporation: **132** (Free legal support)
+
+**Always consult with professionals for specific legal matters.**
+
+---
+
 ## 🚨 Why This Project is Needed
 
 ### Recent Reality in Korea
@@ -206,9 +225,16 @@ Evidence Collection Checklist:
 
 ### Step 1: Clone Repository
 
+> **Note**: This project is built on the Azure AI Chat template.
+
 ```bash
+# Clone Azure AI Chat template (provides basic structure)
 git clone https://github.com/Azure-Samples/get-started-with-ai-chat.git unemployment-assistant
 cd unemployment-assistant
+
+# Or use the complete project (to be updated after deployment)
+# git clone https://github.com/Power-Platform-Users-Korea/ImagineCup.git
+# cd ImagineCup/2026-imagine-cup/unemployment-assistant
 ```
 
 ### Step 2: Create Custom Directories
@@ -497,26 +523,28 @@ reducing staff due to business difficulties. Can I get unemployment benefits?
 
 ---
 
-## 📊 Expected Impact
+## 📊 Projected Social Impact
 
-### If Applied to Coupang Case
+> **Note**: Figures below are estimates based on 2024 media reports and government statistics.
+
+### If Applied to Coupang Case (Estimated)
 
 **Actual Situation** (2024):
-- Workers Affected: ~1,000+
-- Unemployment benefits not received: ~₩500,000,000+
+- Workers Affected: Approximately 1,000+ (based on media reports)
+- Estimated unemployment benefits not received: ~₩500,000,000+
 
-**If AI existed**:
-- Immediately identify unfairness
-- Guide evidence collection
-- Organize collective response
-- Successful unemployment benefits claims
+**If AI existed** (Expected Effect):
+- Immediate unfairness identification and alert
+- Real-time evidence collection guidance
+- Collective response organization support
+- Improved unemployment benefits claim success rate
 
-### Nationwide Impact
+### Nationwide Projected Impact
 
 **Annual Estimate**:
-- Unfair resignation coercion victims: ~10,000+
+- Unfair resignation coercion victims: ~10,000+ (Ministry of Employment estimate)
 - Total unemployment benefits not received: ~₩5,000,000,000
-- **Recoverable with AI: ~7,000+ workers**
+- **Recoverable with AI: ~7,000+ workers (assuming 70% success rate)**
 
 ---
 
@@ -533,12 +561,16 @@ reducing staff due to business difficulties. Can I get unemployment benefits?
 | **Evidence Guide** | After-the-fact | Preventive |
 | **Monthly Operation** | - | ₩30,000-50,000 |
 
-### ROI (Return on Investment)
+### ROI (Social Return on Investment)
 
-**With ₩50,000/month investment**:
-- Can consult 100 workers
+> **Note**: ROI is based on total protected unemployment benefits, representing social value rather than direct revenue.
+
+**With ₩50,000/month operating cost** (Estimated):
+- Can consult 100 workers (based on Azure OpenAI usage)
 - Average unemployment benefit: ₩1,500,000 x 120 days = ~₩180,000,000
-- **ROI: 360,000%**
+- **Social ROI: 360,000%** (Total protected benefits / Operating cost)
+
+*Actual operating costs may vary depending on usage.*
 
 ---
 
@@ -627,19 +659,33 @@ MIT License
 
 ## 📞 Contact
 
-- **GitHub Issues**: [Report bugs or suggestions](../../issues)
+- **GitHub**: [Power-Platform-Users-Korea/ImagineCup](https://github.com/Power-Platform-Users-Korea/ImagineCup/issues)
 - **Emergency Consultation**: Ministry of Employment 1350
 - **Free Legal Aid**: Korea Legal Aid Corporation 132
 
 ---
 
-## 🎯 Sprint to Imagine Cup 2026
+## 🎯 Imagine Cup 2026 - Financial Services Category
 
-**Theme**: Resolving social inequality with AI
+**Category**: Financial Services
 
-**Innovation**: Transforming complex labor law into 24/7 accessible rights protection tool
+**Challenge**: Economic inequality through unemployment benefits deprivation
 
-**Social Impact**: Protecting vulnerable workers' legitimate rights
+Vulnerable workers are unable to receive legitimate unemployment benefits due to information gaps in complex labor laws. This is a financial services accessibility issue that threatens individual economic stability and financial security.
+
+**Innovative Solution**: Democratizing financial rights protection through AI
+
+- Transform complex labor laws into 24/7 accessible real-time consultation service
+- Personalized rights guidance using Azure OpenAI
+- Enhance financial security by resolving information asymmetry
+
+**Social Impact**: Protecting workers' economic safety net
+
+- Support approximately 10,000+ workers annually
+- Protect unemployment benefits worth approximately ₩5,000,000,000
+- Improve financial stability for vulnerable populations
+
+**Tech Stack**: Azure OpenAI, Azure Container Apps, Python/Flask
 
 ---
 
